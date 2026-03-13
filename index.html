@@ -84,7 +84,6 @@
             padding-right: calc(14px + var(--safe-right));
         }
 
-        /* Header */
         .header {
             text-align: center;
             margin-bottom: 18px;
@@ -116,7 +115,6 @@
             color: var(--text-primary);
         }
 
-        /* Cards */
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -126,7 +124,6 @@
             box-shadow: var(--shadow-sm);
         }
 
-        /* Total Card */
         .total-card {
             background: var(--gradient-primary);
             border: none;
@@ -158,7 +155,6 @@
             line-height: 1.1;
         }
 
-        /* Section Title */
         .section-title {
             display: flex;
             align-items: center;
@@ -177,7 +173,6 @@
             color: var(--accent-primary);
         }
 
-        /* Form */
         .form-group {
             margin-bottom: 12px;
         }
@@ -230,7 +225,6 @@
             gap: 10px;
         }
 
-        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -303,6 +297,36 @@
             height: 16px;
         }
 
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 14px 8px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+        }
+
         /* Month Group */
         .month-group {
             margin-bottom: 18px;
@@ -332,7 +356,6 @@
             color: var(--accent-primary-hover);
         }
 
-        /* Expense List */
         .expense-list {
             display: flex;
             flex-direction: column;
@@ -440,7 +463,6 @@
             color: var(--accent-red);
         }
 
-        /* Empty State */
         .empty-state {
             text-align: center;
             padding: 30px 20px;
@@ -458,80 +480,6 @@
             font-size: 13px;
         }
 
-        /* Statistics */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .stat-card {
-            padding: 14px 10px;
-            background: var(--bg-primary);
-            border-radius: var(--radius-md);
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 2px;
-        }
-
-        .stat-label {
-            font-size: 9px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .category-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .category-stat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .category-stat-bar-container {
-            flex: 1;
-            height: 8px;
-            background: var(--bg-primary);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .category-stat-bar {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s ease;
-        }
-
-        .category-stat-name {
-            width: 75px;
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .category-stat-value {
-            width: 70px;
-            text-align: right;
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
         /* Category Colors */
         .cat-cibo { background: rgba(249, 115, 22, 0.15); color: #ea580c; }
         .cat-trasporti { background: rgba(59, 130, 246, 0.15); color: #2563eb; }
@@ -542,16 +490,6 @@
         .cat-utenze { background: rgba(14, 165, 233, 0.15); color: #0284c7; }
         .cat-cura { background: rgba(244, 114, 182, 0.15); color: #db2777; }
         .cat-altro { background: rgba(148, 163, 184, 0.15); color: #64748b; }
-
-        .bar-cibo { background: #f97316; }
-        .bar-trasporti { background: #3b82f6; }
-        .bar-casa { background: #a855f7; }
-        .bar-svago { background: #ec4899; }
-        .bar-salute { background: #10b981; }
-        .bar-pet { background: #f59e0b; }
-        .bar-utenze { background: #0ea5e9; }
-        .bar-cura { background: #f472b6; }
-        .bar-altro { background: #94a3b8; }
 
         /* Modal */
         .modal-overlay {
@@ -723,6 +661,27 @@
 
         <div class="card">
             <div class="section-title">
+                <i data-lucide="bar-chart-3"></i>
+                Riepilogo
+            </div>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-value" id="statTotaleAnno">€ 0</div>
+                    <div class="stat-label">Totale Anno</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statMediaMensile">€ 0</div>
+                    <div class="stat-label">Media Mensile</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statMediaGiornaliera">€ 0</div>
+                    <div class="stat-label">Media Giornaliera</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
                 <i data-lucide="folder"></i>
                 Esporta & Importa
             </div>
@@ -751,38 +710,6 @@
                 Cronologia
             </div>
             <div id="elencoSpese"></div>
-        </div>
-
-        <div class="card">
-            <div class="section-title">
-                <i data-lucide="bar-chart-3"></i>
-                Statistiche
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="statTotale">€ 0</div>
-                    <div class="stat-label">Totale Anno</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="statMedia">€ 0</div>
-                    <div class="stat-label">Media Mensile</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="statNumero">0</div>
-                    <div class="stat-label">N° Spese</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="statMediaSpesa">€ 0</div>
-                    <div class="stat-label">Media per Spesa</div>
-                </div>
-            </div>
-
-            <div class="section-title" style="margin-top: 14px; margin-bottom: 12px;">
-                <i data-lucide="pie-chart"></i>
-                Per Categoria
-            </div>
-            <div class="category-stats" id="categoryStats"></div>
         </div>
     </div>
 
@@ -849,18 +776,6 @@
             'Altro': 'cat-altro'
         };
 
-        const barClasses = {
-            'Cibo': 'bar-cibo',
-            'Trasporti': 'bar-trasporti',
-            'Casa': 'bar-casa',
-            'Utenze': 'bar-utenze',
-            'Svago': 'bar-svago',
-            'Salute': 'bar-salute',
-            'Pet': 'bar-pet',
-            'Cura della persona': 'bar-cura',
-            'Altro': 'bar-altro'
-        };
-
         const mesiNomi = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 
                          'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
 
@@ -881,6 +796,7 @@
             const currentMonth = now.getMonth();
             const currentYear = now.getFullYear();
             
+            // Totale mese corrente
             let totaleMeseCorrente = 0;
             spese.forEach(s => {
                 const d = new Date(s.data);
@@ -888,8 +804,32 @@
                     totaleMeseCorrente += s.importo;
                 }
             });
-            
             document.getElementById('totaleArea').textContent = '€ ' + formatImporto(totaleMeseCorrente);
+            
+            // Statistiche anno corrente
+            const speseAnnoCorrente = spese.filter(s => new Date(s.data).getFullYear() === currentYear);
+            const totaleAnno = speseAnnoCorrente.reduce((sum, s) => sum + s.importo, 0);
+            
+            // Media mensile (basata sui mesi con spese)
+            const mesiConSpese = new Set();
+            speseAnnoCorrente.forEach(s => {
+                mesiConSpese.add(new Date(s.data).getMonth());
+            });
+            const numMesi = mesiConSpese.size || 1;
+            const mediaMensile = totaleAnno / numMesi;
+            
+            // Media giornaliera (giorni dall'inizio anno o dal primo giorno con spese)
+            let giorniAnno = 1;
+            if (speseAnnoCorrente.length > 0) {
+                const primaSpesa = new Date(Math.min(...speseAnnoCorrente.map(s => s.data)));
+                const oggi = new Date();
+                giorniAnno = Math.max(1, Math.ceil((oggi - primaSpesa) / (1000 * 60 * 60 * 24)) + 1);
+            }
+            const mediaGiornaliera = totaleAnno / giorniAnno;
+            
+            document.getElementById('statTotaleAnno').textContent = '€ ' + formatImporto(totaleAnno);
+            document.getElementById('statMediaMensile').textContent = '€ ' + formatImporto(mediaMensile);
+            document.getElementById('statMediaGiornaliera').textContent = '€ ' + formatImporto(mediaGiornaliera);
             
             if (spese.length === 0) {
                 container.innerHTML = `
@@ -899,7 +839,6 @@
                     </div>
                 `;
                 lucide.createIcons();
-                aggiornaStatistiche();
                 return;
             }
 
@@ -957,53 +896,6 @@
 
             container.innerHTML = html;
             lucide.createIcons();
-            aggiornaStatistiche();
-        }
-
-        function aggiornaStatistiche() {
-            const totale = spese.reduce((sum, s) => sum + s.importo, 0);
-            const numero = spese.length;
-            
-            const mesiConSpese = new Set();
-            spese.forEach(s => {
-                const d = new Date(s.data);
-                mesiConSpese.add(`${d.getFullYear()}-${d.getMonth()}`);
-            });
-            const numMesi = mesiConSpese.size || 1;
-            
-            document.getElementById('statTotale').textContent = '€ ' + formatImporto(totale);
-            document.getElementById('statMedia').textContent = '€ ' + formatImporto(totale / numMesi);
-            document.getElementById('statNumero').textContent = numero;
-            document.getElementById('statMediaSpesa').textContent = numero > 0 ? '€ ' + formatImporto(totale / numero) : '€ 0,00';
-
-            const perCategoria = {};
-            spese.forEach(s => {
-                if (!perCategoria[s.categoria]) perCategoria[s.categoria] = 0;
-                perCategoria[s.categoria] += s.importo;
-            });
-
-            const catContainer = document.getElementById('categoryStats');
-            if (Object.keys(perCategoria).length === 0) {
-                catContainer.innerHTML = '<div class="empty-state"><p>Nessun dato</p></div>';
-                return;
-            }
-
-            const sorted = Object.entries(perCategoria).sort((a, b) => b[1] - a[1]);
-            const maxVal = sorted[0][1];
-
-            catContainer.innerHTML = sorted.map(([cat, val]) => {
-                const percent = (val / maxVal) * 100;
-                const barClass = barClasses[cat] || 'bar-altro';
-                return `
-                    <div class="category-stat-item">
-                        <span class="category-stat-name">${cat}</span>
-                        <div class="category-stat-bar-container">
-                            <div class="category-stat-bar ${barClass}" style="width: ${percent}%"></div>
-                        </div>
-                        <span class="category-stat-value">€ ${formatImporto(val)}</span>
-                    </div>
-                `;
-            }).join('');
         }
 
         function parseData(dataStr) {
