@@ -1,0 +1,1065 @@
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Spese Pro">
+    <title>Spese Pro 2026</title>
+    
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-primary-hover: #4f46e5;
+            --accent-primary-light: #eef2ff;
+            --accent-green: #10b981;
+            --accent-green-light: #ecfdf5;
+            --accent-red: #ef4444;
+            --accent-red-light: #fef2f2;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f59e0b;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-top: 16px;
+        }
+
+        .header-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        /* Total Card */
+        .total-card {
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+        }
+
+        .total-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .total-label svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .total-amount {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        /* Section Title */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .section-title svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-primary);
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-primary-light);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-primary);
+        }
+
+        .btn-danger {
+            background: var(--accent-red-light);
+            color: var(--accent-red);
+            border: 1px solid transparent;
+        }
+
+        .btn-danger:hover {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* Month Group */
+        .month-group {
+            margin-bottom: 24px;
+        }
+
+        .month-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--accent-primary-light);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+        }
+
+        .month-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .month-total {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-primary-hover);
+        }
+
+        /* Expense List */
+        .expense-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .expense-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            transition: all 0.2s ease;
+        }
+
+        .expense-item:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .expense-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .expense-desc {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .expense-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .expense-category {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .expense-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 12px;
+        }
+
+        .expense-amount {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent-red);
+            white-space: nowrap;
+        }
+
+        .btn-action {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-edit {
+            background: var(--accent-primary-light);
+            color: var(--accent-primary);
+        }
+
+        .btn-edit:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-delete {
+            background: var(--accent-red-light);
+            color: var(--accent-red);
+        }
+
+        .btn-delete:hover {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            padding: 16px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .category-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-stat-bar-container {
+            flex: 1;
+            height: 8px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .category-stat-bar {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .category-stat-name {
+            width: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .category-stat-value {
+            width: 90px;
+            text-align: right;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Category Colors */
+        .cat-cibo { background: rgba(249, 115, 22, 0.15); color: #ea580c; }
+        .cat-trasporti { background: rgba(59, 130, 246, 0.15); color: #2563eb; }
+        .cat-casa { background: rgba(168, 85, 247, 0.15); color: #9333ea; }
+        .cat-svago { background: rgba(236, 72, 153, 0.15); color: #db2777; }
+        .cat-salute { background: rgba(16, 185, 129, 0.15); color: #059669; }
+        .cat-pet { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+        .cat-utenze { background: rgba(14, 165, 233, 0.15); color: #0284c7; }
+        .cat-cura { background: rgba(244, 114, 182, 0.15); color: #db2777; }
+        .cat-altro { background: rgba(148, 163, 184, 0.15); color: #64748b; }
+
+        .bar-cibo { background: #f97316; }
+        .bar-trasporti { background: #3b82f6; }
+        .bar-casa { background: #a855f7; }
+        .bar-svago { background: #ec4899; }
+        .bar-salute { background: #10b981; }
+        .bar-pet { background: #f59e0b; }
+        .bar-utenze { background: #0ea5e9; }
+        .bar-cura { background: #f472b6; }
+        .bar-altro { background: #94a3b8; }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .modal-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">
+                <i data-lucide="wallet"></i>
+            </div>
+            <h1>Spese Pro 2026</h1>
+        </div>
+
+        <!-- Total Card -->
+        <div class="card total-card">
+            <div class="total-label">
+                <i data-lucide="calendar"></i>
+                Totale Spese Mese Corrente
+            </div>
+            <div class="total-amount" id="totaleArea">€ 0,00</div>
+        </div>
+
+        <!-- Add Expense -->
+        <div class="card">
+            <div class="section-title">
+                <i data-lucide="plus-circle"></i>
+                Nuova Spesa
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Data</label>
+                    <input type="date" id="dataSpesa" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Categoria</label>
+                    <select id="categoriaSpesa" class="form-input">
+                        <option value="Cibo">🍕 Cibo</option>
+                        <option value="Trasporti">🚗 Trasporti</option>
+                        <option value="Casa">🏠 Casa</option>
+                        <option value="Utenze">💡 Utenze</option>
+                        <option value="Svago">🎬 Svago</option>
+                        <option value="Salute">💊 Salute</option>
+                        <option value="Pet">🐾 Pet</option>
+                        <option value="Cura della persona">💆 Cura della persona</option>
+                        <option value="Altro">📦 Altro</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Descrizione</label>
+                <input type="text" id="descrizioneSpesa" class="form-input" placeholder="Es: Pranzo al ristorante">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Importo (€)</label>
+                <input type="number" id="importoSpesa" class="form-input" placeholder="0.00" step="0.01" min="0">
+            </div>
+            
+            <button class="btn btn-primary" onclick="aggiungiSpesa()">
+                <i data-lucide="plus"></i>
+                Aggiungi Spesa
+            </button>
+        </div>
+
+        <!-- Export/Import -->
+        <div class="card">
+            <div class="section-title">
+                <i data-lucide="folder"></i>
+                Esporta & Importa
+            </div>
+            
+            <div class="btn-grid">
+                <button class="btn btn-secondary" onclick="esportaCSV()">
+                    <i data-lucide="download"></i>
+                    Esporta
+                </button>
+                <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">
+                    <i data-lucide="upload"></i>
+                    Importa
+                </button>
+                <button class="btn btn-danger" onclick="svuotaDatabase()">
+                    <i data-lucide="trash-2"></i>
+                    Svuota
+                </button>
+            </div>
+            
+            <input type="file" id="fileInput" accept=".csv">
+        </div>
+
+        <!-- Expense List -->
+        <div class="card">
+            <div class="section-title">
+                <i data-lucide="list"></i>
+                Cronologia
+            </div>
+            <div id="elencoSpese"></div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="card">
+            <div class="section-title">
+                <i data-lucide="bar-chart-3"></i>
+                Statistiche
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="statTotale">€ 0</div>
+                    <div class="stat-label">Totale Anno</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statMedia">€ 0</div>
+                    <div class="stat-label">Media Mensile</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statNumero">0</div>
+                    <div class="stat-label">N° Spese</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statMediaSpesa">€ 0</div>
+                    <div class="stat-label">Media per Spesa</div>
+                </div>
+            </div>
+
+            <div class="section-title" style="margin-top: 20px; margin-bottom: 16px;">
+                <i data-lucide="pie-chart"></i>
+                Per Categoria
+            </div>
+            <div class="category-stats" id="categoryStats"></div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <div class="modal-title">Modifica Spesa</div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Data</label>
+                    <input type="date" id="editData" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Categoria</label>
+                    <select id="editCategoria" class="form-input">
+                        <option value="Cibo">🍕 Cibo</option>
+                        <option value="Trasporti">🚗 Trasporti</option>
+                        <option value="Casa">🏠 Casa</option>
+                        <option value="Utenze">💡 Utenze</option>
+                        <option value="Svago">🎬 Svago</option>
+                        <option value="Salute">💊 Salute</option>
+                        <option value="Pet">🐾 Pet</option>
+                        <option value="Cura della persona">💆 Cura della persona</option>
+                        <option value="Altro">📦 Altro</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Descrizione</label>
+                <input type="text" id="editDescrizione" class="form-input">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Importo (€)</label>
+                <input type="number" id="editImporto" class="form-input" step="0.01" min="0">
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="chiudiModal()">Annulla</button>
+                <button class="btn btn-primary" onclick="salvaModifica()">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let spese = JSON.parse(localStorage.getItem('speseData')) || [];
+        let editingIndex = -1;
+
+        const categoryClasses = {
+            'Cibo': 'cat-cibo',
+            'Trasporti': 'cat-trasporti',
+            'Casa': 'cat-casa',
+            'Utenze': 'cat-utenze',
+            'Svago': 'cat-svago',
+            'Salute': 'cat-salute',
+            'Pet': 'cat-pet',
+            'Cura della persona': 'cat-cura',
+            'Altro': 'cat-altro'
+        };
+
+        const barClasses = {
+            'Cibo': 'bar-cibo',
+            'Trasporti': 'bar-trasporti',
+            'Casa': 'bar-casa',
+            'Utenze': 'bar-utenze',
+            'Svago': 'bar-svago',
+            'Salute': 'bar-salute',
+            'Pet': 'bar-pet',
+            'Cura della persona': 'bar-cura',
+            'Altro': 'bar-altro'
+        };
+
+        const mesiNomi = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 
+                         'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+
+        function formatImporto(num) {
+            return num.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function aggiornaUI() {
+            const container = document.getElementById('elencoSpese');
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            
+            // Calcola totale mese corrente
+            let totaleMeseCorrente = 0;
+            spese.forEach(s => {
+                const d = new Date(s.data);
+                if (d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
+                    totaleMeseCorrente += s.importo;
+                }
+            });
+            
+            document.getElementById('totaleArea').textContent = '€ ' + formatImporto(totaleMeseCorrente);
+            
+            if (spese.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i data-lucide="inbox"></i>
+                        <p>Nessuna spesa registrata</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                aggiornaStatistiche();
+                return;
+            }
+
+            // Raggruppa per mese
+            const grouped = {};
+            spese.forEach((s, i) => {
+                const d = new Date(s.data);
+                const key = `${d.getFullYear()}-${String(d.getMonth()).padStart(2, '0')}`;
+                if (!grouped[key]) {
+                    grouped[key] = { mese: d.getMonth(), anno: d.getFullYear(), spese: [], totale: 0 };
+                }
+                grouped[key].spese.push({ ...s, originalIndex: i });
+                grouped[key].totale += s.importo;
+            });
+
+            // Ordina i mesi (più recenti prima)
+            const sortedKeys = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+
+            let html = '';
+            sortedKeys.forEach(key => {
+                const group = grouped[key];
+                html += `
+                    <div class="month-group">
+                        <div class="month-header">
+                            <span class="month-title">${mesiNomi[group.mese]} ${group.anno}</span>
+                            <span class="month-total">€ ${formatImporto(group.totale)}</span>
+                        </div>
+                        <div class="expense-list">
+                `;
+                
+                group.spese.forEach(s => {
+                    const catClass = categoryClasses[s.categoria] || 'cat-altro';
+                    html += `
+                        <div class="expense-item">
+                            <div class="expense-info">
+                                <div class="expense-desc">${s.descrizione}</div>
+                                <div class="expense-meta">
+                                    <span>${new Date(s.data).toLocaleDateString('it-IT')}</span>
+                                    <span class="expense-category ${catClass}">${s.categoria}</span>
+                                </div>
+                            </div>
+                            <div class="expense-right">
+                                <span class="expense-amount">-€ ${formatImporto(s.importo)}</span>
+                                <button class="btn-action btn-edit" onclick="apriModifica(${s.originalIndex})">
+                                    <i data-lucide="pencil"></i>
+                                </button>
+                                <button class="btn-action btn-delete" onclick="eliminaSpesa(${s.originalIndex})">
+                                    <i data-lucide="x"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div></div>`;
+            });
+
+            container.innerHTML = html;
+            lucide.createIcons();
+            aggiornaStatistiche();
+        }
+
+        function aggiornaStatistiche() {
+            const totale = spese.reduce((sum, s) => sum + s.importo, 0);
+            const numero = spese.length;
+            
+            // Calcola mesi con spese
+            const mesiConSpese = new Set();
+            spese.forEach(s => {
+                const d = new Date(s.data);
+                mesiConSpese.add(`${d.getFullYear()}-${d.getMonth()}`);
+            });
+            const numMesi = mesiConSpese.size || 1;
+            
+            document.getElementById('statTotale').textContent = '€ ' + formatImporto(totale);
+            document.getElementById('statMedia').textContent = '€ ' + formatImporto(totale / numMesi);
+            document.getElementById('statNumero').textContent = numero;
+            document.getElementById('statMediaSpesa').textContent = numero > 0 ? '€ ' + formatImporto(totale / numero) : '€ 0,00';
+
+            // Statistiche per categoria
+            const perCategoria = {};
+            spese.forEach(s => {
+                if (!perCategoria[s.categoria]) perCategoria[s.categoria] = 0;
+                perCategoria[s.categoria] += s.importo;
+            });
+
+            const catContainer = document.getElementById('categoryStats');
+            if (Object.keys(perCategoria).length === 0) {
+                catContainer.innerHTML = '<div class="empty-state"><p>Nessun dato</p></div>';
+                return;
+            }
+
+            const sorted = Object.entries(perCategoria).sort((a, b) => b[1] - a[1]);
+            const maxVal = sorted[0][1];
+
+            catContainer.innerHTML = sorted.map(([cat, val]) => {
+                const percent = (val / maxVal) * 100;
+                const barClass = barClasses[cat] || 'bar-altro';
+                return `
+                    <div class="category-stat-item">
+                        <span class="category-stat-name">${cat}</span>
+                        <div class="category-stat-bar-container">
+                            <div class="category-stat-bar ${barClass}" style="width: ${percent}%"></div>
+                        </div>
+                        <span class="category-stat-value">€ ${formatImporto(val)}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function parseData(dataStr) {
+            if (!dataStr) return null;
+            if (dataStr.includes('/')) {
+                const parts = dataStr.split('/');
+                if (parts.length === 3) {
+                    const d = new Date(parts[2], parts[1] - 1, parts[0]);
+                    return isNaN(d.getTime()) ? null : d.getTime();
+                }
+            } else if (dataStr.includes('-')) {
+                const d = new Date(dataStr);
+                return isNaN(d.getTime()) ? null : d.getTime();
+            }
+            return null;
+        }
+
+        function aggiungiSpesa() {
+            const d = document.getElementById('dataSpesa').value;
+            const desc = document.getElementById('descrizioneSpesa').value.trim();
+            const cat = document.getElementById('categoriaSpesa').value;
+            const imp = parseFloat(document.getElementById('importoSpesa').value);
+
+            if (!d) return alert('Inserisci una data valida');
+            if (!desc) return alert('Inserisci una descrizione');
+            if (isNaN(imp) || imp <= 0) return alert('Inserisci un importo valido');
+
+            spese.push({
+                data: new Date(d).getTime(),
+                descrizione: desc,
+                categoria: cat,
+                importo: imp
+            });
+
+            document.getElementById('descrizioneSpesa').value = '';
+            document.getElementById('importoSpesa').value = '';
+            
+            salvaERicarica();
+        }
+
+        function apriModifica(i) {
+            editingIndex = i;
+            const s = spese[i];
+            const d = new Date(s.data);
+            
+            document.getElementById('editData').value = d.toISOString().split('T')[0];
+            document.getElementById('editDescrizione').value = s.descrizione;
+            document.getElementById('editCategoria').value = s.categoria;
+            document.getElementById('editImporto').value = s.importo;
+            
+            document.getElementById('editModal').classList.add('active');
+        }
+
+        function chiudiModal() {
+            document.getElementById('editModal').classList.remove('active');
+            editingIndex = -1;
+        }
+
+        function salvaModifica() {
+            if (editingIndex < 0) return;
+            
+            const d = document.getElementById('editData').value;
+            const desc = document.getElementById('editDescrizione').value.trim();
+            const cat = document.getElementById('editCategoria').value;
+            const imp = parseFloat(document.getElementById('editImporto').value);
+
+            if (!d) return alert('Inserisci una data valida');
+            if (!desc) return alert('Inserisci una descrizione');
+            if (isNaN(imp) || imp <= 0) return alert('Inserisci un importo valido');
+
+            spese[editingIndex] = {
+                data: new Date(d).getTime(),
+                descrizione: desc,
+                categoria: cat,
+                importo: imp
+            };
+
+            chiudiModal();
+            salvaERicarica();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const text = ev.target.result;
+                const lines = text.split('\n');
+                let count = 0;
+
+                for (let i = 1; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+
+                    let cols = line.includes(';') ? line.split(';') : line.split(',');
+                    if (cols.length < 4) continue;
+
+                    const dataVal = parseData(cols[0].trim());
+                    const desc = cols[1].trim();
+                    const cat = cols[2].trim();
+                    const imp = parseFloat(cols[3].replace(',', '.').replace(/\./g, (m, o, s) => s.indexOf('.') === o ? '.' : ''));
+
+                    if (!dataVal || !desc || isNaN(imp)) continue;
+
+                    spese.push({ data: dataVal, descrizione: desc, categoria: cat, importo: imp });
+                    count++;
+                }
+
+                salvaERicarica();
+                alert(`Importate ${count} spese con successo!`);
+            };
+            reader.readAsText(file);
+            e.target.value = '';
+        });
+
+        function salvaERicarica() {
+            spese.sort((a, b) => b.data - a.data);
+            localStorage.setItem('speseData', JSON.stringify(spese));
+            aggiornaUI();
+        }
+
+        function svuotaDatabase() {
+            if (confirm('Sei sicuro di voler eliminare TUTTE le spese? Questa azione non può essere annullata.')) {
+                spese = [];
+                salvaERicarica();
+            }
+        }
+
+        function eliminaSpesa(i) {
+            if (confirm('Eliminare questa spesa?')) {
+                spese.splice(i, 1);
+                salvaERicarica();
+            }
+        }
+
+        function esportaCSV() {
+            if (spese.length === 0) return alert('Nessuna spesa da esportare');
+            
+            let csv = 'Data;Descrizione;Categoria;Importo\n';
+            spese.forEach(s => {
+                const data = new Date(s.data).toLocaleDateString('it-IT');
+                csv += `${data};${s.descrizione};${s.categoria};${s.importo.toFixed(2).replace('.', ',')}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'spese_2026.csv';
+            link.click();
+        }
+
+        // Click outside modal to close
+        document.getElementById('editModal').addEventListener('click', function(e) {
+            if (e.target === this) chiudiModal();
+        });
+
+        window.onload = function() {
+            document.getElementById('dataSpesa').valueAsDate = new Date();
+            aggiornaUI();
+        };
+    </script>
+</body>
+</html>
+```
