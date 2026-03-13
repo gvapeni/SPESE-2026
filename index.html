@@ -1,12 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Spese Pro">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#6366f1">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%236366f1' width='100' height='100' rx='20'/><text x='50' y='65' font-size='50' text-anchor='middle' fill='white'>💰</text></svg>">
     <title>Spese Pro 2026</title>
     
     <!-- Google Font -->
@@ -34,66 +36,83 @@
             --accent-green-light: #ecfdf5;
             --accent-red: #ef4444;
             --accent-red-light: #fef2f2;
-            --accent-blue: #3b82f6;
-            --accent-orange: #f59e0b;
             --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
             --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 18px;
+            --radius-xl: 22px;
+            --safe-top: env(safe-area-inset-top);
+            --safe-bottom: env(safe-area-inset-bottom);
+            --safe-left: env(safe-area-inset-left);
+            --safe-right: env(safe-area-inset-right);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            height: 100%;
+            overflow: hidden;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            min-height: 100vh;
+            min-height: 100%;
+            height: 100%;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: contain;
         }
 
         .container {
-            max-width: 480px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 16px;
+            padding-top: calc(16px + var(--safe-top));
+            padding-bottom: calc(100px + var(--safe-bottom));
+            padding-left: calc(16px + var(--safe-left));
+            padding-right: calc(16px + var(--safe-right));
         }
 
         /* Header */
         .header {
             text-align: center;
-            margin-bottom: 24px;
-            padding-top: 16px;
+            margin-bottom: 20px;
+            padding-top: 8px;
         }
 
         .header-icon {
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             background: var(--gradient-primary);
             border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
+            margin: 0 auto 14px;
             box-shadow: var(--shadow-lg);
         }
 
         .header-icon svg {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             color: white;
         }
 
         .header h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: var(--text-primary);
@@ -104,10 +123,9 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
-            padding: 24px;
-            margin-bottom: 16px;
+            padding: 20px;
+            margin-bottom: 14px;
             box-shadow: var(--shadow-sm);
-            transition: all 0.2s ease;
         }
 
         /* Total Card */
@@ -115,15 +133,16 @@
             background: var(--gradient-primary);
             border: none;
             color: white;
+            padding: 24px 20px;
         }
 
         .total-label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             opacity: 0.9;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -135,10 +154,10 @@
         }
 
         .total-amount {
-            font-size: 38px;
+            font-size: 34px;
             font-weight: 800;
             letter-spacing: -1px;
-            line-height: 1;
+            line-height: 1.1;
         }
 
         /* Section Title */
@@ -146,12 +165,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--text-secondary);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .section-title svg {
@@ -162,29 +181,31 @@
 
         /* Form */
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .form-label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .form-input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 16px;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             color: var(--text-primary);
-            font-size: 15px;
+            font-size: 16px; /* Prevents iOS zoom */
             font-family: inherit;
             transition: all 0.2s ease;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .form-input:focus {
@@ -197,10 +218,18 @@
             color: var(--text-muted);
         }
 
+        select.form-input {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 44px;
+        }
+
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
 
         /* Buttons */
@@ -209,20 +238,28 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 14px 24px;
+            padding: 16px 20px;
             border: none;
             border-radius: var(--radius-md);
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             font-family: inherit;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             width: 100%;
+            min-height: 52px; /* Touch-friendly */
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+            opacity: 0.9;
         }
 
         .btn svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
         }
 
         .btn-primary {
@@ -231,29 +268,22 @@
             box-shadow: var(--shadow-md);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
         .btn-secondary {
             background: var(--bg-primary);
             color: var(--text-primary);
             border: 1px solid var(--border-color);
         }
 
-        .btn-secondary:hover {
+        .btn-secondary:active {
             background: var(--bg-card-hover);
-            border-color: var(--accent-primary);
         }
 
         .btn-danger {
             background: var(--accent-red-light);
             color: var(--accent-red);
-            border: 1px solid transparent;
         }
 
-        .btn-danger:hover {
+        .btn-danger:active {
             background: var(--accent-red);
             color: white;
         }
@@ -261,26 +291,26 @@
         .btn-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
 
         /* Month Group */
         .month-group {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .month-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 16px;
+            padding: 12px 14px;
             background: var(--accent-primary-light);
             border-radius: var(--radius-md);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .month-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--accent-primary);
             text-transform: uppercase;
@@ -288,7 +318,7 @@
         }
 
         .month-total {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--accent-primary-hover);
         }
@@ -297,28 +327,28 @@
         .expense-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .expense-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 16px;
+            padding: 14px;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
-        .expense-item:hover {
-            border-color: var(--accent-primary);
-            box-shadow: var(--shadow-sm);
+        .expense-item:active {
+            background: var(--bg-card-hover);
         }
 
         .expense-info {
             flex: 1;
             min-width: 0;
+            padding-right: 8px;
         }
 
         .expense-desc {
@@ -337,34 +367,36 @@
             gap: 8px;
             font-size: 12px;
             color: var(--text-muted);
+            flex-wrap: wrap;
         }
 
         .expense-category {
             display: inline-flex;
             align-items: center;
-            padding: 2px 8px;
+            padding: 3px 8px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
         }
 
         .expense-right {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-left: 12px;
+            gap: 6px;
+            flex-shrink: 0;
         }
 
         .expense-amount {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--accent-red);
             white-space: nowrap;
         }
 
         .btn-action {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
             padding: 0;
             border: none;
             border-radius: var(--radius-sm);
@@ -372,12 +404,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
+        }
+
+        .btn-action:active {
+            transform: scale(0.9);
         }
 
         .btn-action svg {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
         }
 
         .btn-edit {
@@ -385,59 +421,53 @@
             color: var(--accent-primary);
         }
 
-        .btn-edit:hover {
-            background: var(--accent-primary);
-            color: white;
-        }
-
         .btn-delete {
             background: var(--accent-red-light);
             color: var(--accent-red);
         }
 
-        .btn-delete:hover {
-            background: var(--accent-red);
-            color: white;
-        }
-
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 40px 20px;
+            padding: 36px 20px;
             color: var(--text-muted);
         }
 
         .empty-state svg {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 16px;
+            width: 44px;
+            height: 44px;
+            margin-bottom: 12px;
             opacity: 0.5;
+        }
+
+        .empty-state p {
+            font-size: 14px;
         }
 
         /* Statistics */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
         .stat-card {
-            padding: 16px;
+            padding: 16px 12px;
             background: var(--bg-primary);
             border-radius: var(--radius-md);
             text-align: center;
         }
 
         .stat-value {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .stat-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: var(--text-muted);
             text-transform: uppercase;
@@ -453,34 +483,37 @@
         .category-stat-item {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .category-stat-bar-container {
             flex: 1;
-            height: 8px;
+            height: 10px;
             background: var(--bg-primary);
-            border-radius: 4px;
+            border-radius: 5px;
             overflow: hidden;
         }
 
         .category-stat-bar {
             height: 100%;
-            border-radius: 4px;
+            border-radius: 5px;
             transition: width 0.3s ease;
         }
 
         .category-stat-name {
-            width: 100px;
-            font-size: 12px;
+            width: 80px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .category-stat-value {
-            width: 90px;
+            width: 80px;
             text-align: right;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--text-primary);
         }
@@ -516,9 +549,9 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
-            padding: 20px;
+            padding: 0;
         }
 
         .modal-overlay.active {
@@ -527,11 +560,23 @@
 
         .modal {
             background: var(--bg-card);
-            border-radius: var(--radius-xl);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
             padding: 24px;
+            padding-bottom: calc(24px + var(--safe-bottom));
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             box-shadow: var(--shadow-lg);
+            max-height: 90vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-handle {
+            width: 36px;
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+            margin: 0 auto 20px;
         }
 
         .modal-title {
@@ -539,17 +584,70 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--text-primary);
+            text-align: center;
         }
 
         .modal-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
             margin-top: 20px;
         }
 
         #fileInput {
             display: none;
+        }
+
+        /* iOS-specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .form-input {
+                font-size: 16px !important;
+            }
+            
+            body {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .container {
+                height: 100%;
+                overflow-y: auto;
+            }
+        }
+
+        /* Prevent text selection on buttons */
+        button, .btn, .btn-action {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Smooth scrolling */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: calc(20px + var(--safe-bottom));
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-primary);
+            color: white;
+            padding: 14px 24px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 2000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
@@ -594,7 +692,7 @@
                         <option value="Svago">🎬 Svago</option>
                         <option value="Salute">💊 Salute</option>
                         <option value="Pet">🐾 Pet</option>
-                        <option value="Cura della persona">💆 Cura della persona</option>
+                        <option value="Cura della persona">💆 Cura persona</option>
                         <option value="Altro">📦 Altro</option>
                     </select>
                 </div>
@@ -602,12 +700,12 @@
             
             <div class="form-group">
                 <label class="form-label">Descrizione</label>
-                <input type="text" id="descrizioneSpesa" class="form-input" placeholder="Es: Pranzo al ristorante">
+                <input type="text" id="descrizioneSpesa" class="form-input" placeholder="Es: Pranzo al ristorante" autocomplete="off" autocorrect="off">
             </div>
             
             <div class="form-group">
                 <label class="form-label">Importo (€)</label>
-                <input type="number" id="importoSpesa" class="form-input" placeholder="0.00" step="0.01" min="0">
+                <input type="number" id="importoSpesa" class="form-input" placeholder="0,00" step="0.01" min="0" inputmode="decimal">
             </div>
             
             <button class="btn btn-primary" onclick="aggiungiSpesa()">
@@ -676,7 +774,7 @@
                 </div>
             </div>
 
-            <div class="section-title" style="margin-top: 20px; margin-bottom: 16px;">
+            <div class="section-title" style="margin-top: 16px; margin-bottom: 14px;">
                 <i data-lucide="pie-chart"></i>
                 Per Categoria
             </div>
@@ -687,6 +785,7 @@
     <!-- Edit Modal -->
     <div class="modal-overlay" id="editModal">
         <div class="modal">
+            <div class="modal-handle"></div>
             <div class="modal-title">Modifica Spesa</div>
             
             <div class="form-row">
@@ -704,7 +803,7 @@
                         <option value="Svago">🎬 Svago</option>
                         <option value="Salute">💊 Salute</option>
                         <option value="Pet">🐾 Pet</option>
-                        <option value="Cura della persona">💆 Cura della persona</option>
+                        <option value="Cura della persona">💆 Cura persona</option>
                         <option value="Altro">📦 Altro</option>
                     </select>
                 </div>
@@ -712,12 +811,12 @@
             
             <div class="form-group">
                 <label class="form-label">Descrizione</label>
-                <input type="text" id="editDescrizione" class="form-input">
+                <input type="text" id="editDescrizione" class="form-input" autocomplete="off" autocorrect="off">
             </div>
             
             <div class="form-group">
                 <label class="form-label">Importo (€)</label>
-                <input type="number" id="editImporto" class="form-input" step="0.01" min="0">
+                <input type="number" id="editImporto" class="form-input" step="0.01" min="0" inputmode="decimal">
             </div>
             
             <div class="modal-buttons">
@@ -726,6 +825,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
 
     <script>
         lucide.createIcons();
@@ -764,13 +866,19 @@
             return num.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
         function aggiornaUI() {
             const container = document.getElementById('elencoSpese');
             const now = new Date();
             const currentMonth = now.getMonth();
             const currentYear = now.getFullYear();
             
-            // Calcola totale mese corrente
             let totaleMeseCorrente = 0;
             spese.forEach(s => {
                 const d = new Date(s.data);
@@ -793,7 +901,6 @@
                 return;
             }
 
-            // Raggruppa per mese
             const grouped = {};
             spese.forEach((s, i) => {
                 const d = new Date(s.data);
@@ -805,7 +912,6 @@
                 grouped[key].totale += s.importo;
             });
 
-            // Ordina i mesi (più recenti prima)
             const sortedKeys = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
             let html = '';
@@ -856,7 +962,6 @@
             const totale = spese.reduce((sum, s) => sum + s.importo, 0);
             const numero = spese.length;
             
-            // Calcola mesi con spese
             const mesiConSpese = new Set();
             spese.forEach(s => {
                 const d = new Date(s.data);
@@ -869,7 +974,6 @@
             document.getElementById('statNumero').textContent = numero;
             document.getElementById('statMediaSpesa').textContent = numero > 0 ? '€ ' + formatImporto(totale / numero) : '€ 0,00';
 
-            // Statistiche per categoria
             const perCategoria = {};
             spese.forEach(s => {
                 if (!perCategoria[s.categoria]) perCategoria[s.categoria] = 0;
@@ -921,9 +1025,9 @@
             const cat = document.getElementById('categoriaSpesa').value;
             const imp = parseFloat(document.getElementById('importoSpesa').value);
 
-            if (!d) return alert('Inserisci una data valida');
-            if (!desc) return alert('Inserisci una descrizione');
-            if (isNaN(imp) || imp <= 0) return alert('Inserisci un importo valido');
+            if (!d) return showToast('⚠️ Inserisci una data valida');
+            if (!desc) return showToast('⚠️ Inserisci una descrizione');
+            if (isNaN(imp) || imp <= 0) return showToast('⚠️ Inserisci un importo valido');
 
             spese.push({
                 data: new Date(d).getTime(),
@@ -936,6 +1040,7 @@
             document.getElementById('importoSpesa').value = '';
             
             salvaERicarica();
+            showToast('✅ Spesa aggiunta');
         }
 
         function apriModifica(i) {
@@ -949,10 +1054,12 @@
             document.getElementById('editImporto').value = s.importo;
             
             document.getElementById('editModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function chiudiModal() {
             document.getElementById('editModal').classList.remove('active');
+            document.body.style.overflow = '';
             editingIndex = -1;
         }
 
@@ -964,9 +1071,9 @@
             const cat = document.getElementById('editCategoria').value;
             const imp = parseFloat(document.getElementById('editImporto').value);
 
-            if (!d) return alert('Inserisci una data valida');
-            if (!desc) return alert('Inserisci una descrizione');
-            if (isNaN(imp) || imp <= 0) return alert('Inserisci un importo valido');
+            if (!d) return showToast('⚠️ Inserisci una data valida');
+            if (!desc) return showToast('⚠️ Inserisci una descrizione');
+            if (isNaN(imp) || imp <= 0) return showToast('⚠️ Inserisci un importo valido');
 
             spese[editingIndex] = {
                 data: new Date(d).getTime(),
@@ -977,6 +1084,7 @@
 
             chiudiModal();
             salvaERicarica();
+            showToast('✅ Spesa modificata');
         }
 
         document.getElementById('fileInput').addEventListener('change', function(e) {
@@ -1008,7 +1116,7 @@
                 }
 
                 salvaERicarica();
-                alert(`Importate ${count} spese con successo!`);
+                showToast(`✅ Importate ${count} spese`);
             };
             reader.readAsText(file);
             e.target.value = '';
@@ -1021,9 +1129,10 @@
         }
 
         function svuotaDatabase() {
-            if (confirm('Sei sicuro di voler eliminare TUTTE le spese? Questa azione non può essere annullata.')) {
+            if (confirm('Sei sicuro di voler eliminare TUTTE le spese?')) {
                 spese = [];
                 salvaERicarica();
+                showToast('🗑️ Tutti i dati eliminati');
             }
         }
 
@@ -1031,11 +1140,12 @@
             if (confirm('Eliminare questa spesa?')) {
                 spese.splice(i, 1);
                 salvaERicarica();
+                showToast('🗑️ Spesa eliminata');
             }
         }
 
         function esportaCSV() {
-            if (spese.length === 0) return alert('Nessuna spesa da esportare');
+            if (spese.length === 0) return showToast('⚠️ Nessuna spesa da esportare');
             
             let csv = 'Data;Descrizione;Categoria;Importo\n';
             spese.forEach(s => {
@@ -1048,12 +1158,19 @@
             link.href = URL.createObjectURL(blob);
             link.download = 'spese_2026.csv';
             link.click();
+            showToast('✅ File esportato');
         }
 
-        // Click outside modal to close
         document.getElementById('editModal').addEventListener('click', function(e) {
             if (e.target === this) chiudiModal();
         });
+
+        // Prevent pull-to-refresh on iOS
+        document.body.addEventListener('touchmove', function(e) {
+            if (document.getElementById('editModal').classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
 
         window.onload = function() {
             document.getElementById('dataSpesa').valueAsDate = new Date();
@@ -1062,4 +1179,3 @@
     </script>
 </body>
 </html>
-```
